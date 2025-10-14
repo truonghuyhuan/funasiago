@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\custom.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\style.bundle.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\@fortawesome\fa-brands-400.eot" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\@fortawesome\fa-brands-400.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\@fortawesome\fa-brands-400.ttf" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\@fortawesome\fa-brands-400.woff" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\@fortawesome\fa-brands-400.woff2" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\@fortawesome\fa-regular-400.eot" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\@fortawesome\fa-regular-400.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\@fortawesome\fa-regular-400.ttf" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\@fortawesome\fa-regular-400.woff" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\@fortawesome\fa-regular-400.woff2" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\@fortawesome\fa-solid-900.eot" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\@fortawesome\fa-solid-900.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\@fortawesome\fa-solid-900.ttf" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\@fortawesome\fa-solid-900.woff" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\@fortawesome\fa-solid-900.woff2" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\bootstrap-icons\bootstrap-icons.woff" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\bootstrap-icons\bootstrap-icons.woff2" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\keenicons\keenicons-duotone.eot" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\keenicons\keenicons-duotone.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\keenicons\keenicons-duotone.ttf" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\keenicons\keenicons-duotone.woff" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\keenicons\keenicons-outline.eot" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\keenicons\keenicons-outline.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\keenicons\keenicons-outline.ttf" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\keenicons\keenicons-outline.woff" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\keenicons\keenicons-solid.eot" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\keenicons\keenicons-solid.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\keenicons\keenicons-solid.ttf" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\keenicons\keenicons-solid.woff" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\line-awesome\la-brands-400.eot" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\line-awesome\la-brands-400.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\line-awesome\la-brands-400.ttf" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\line-awesome\la-brands-400.woff" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\line-awesome\la-brands-400.woff2" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\line-awesome\la-regular-400.eot" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\line-awesome\la-regular-400.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\line-awesome\la-regular-400.ttf" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\line-awesome\la-regular-400.woff" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\line-awesome\la-regular-400.woff2" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\line-awesome\la-solid-900.eot" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\line-awesome\la-solid-900.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\line-awesome\la-solid-900.ttf" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\line-awesome\la-solid-900.woff" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\fonts\line-awesome\la-solid-900.woff2" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\plugins.bundle.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\global\plugins.bundle.js" />
+  </ItemGroup>
+</Project>

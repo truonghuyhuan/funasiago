@@ -1,0 +1,139 @@
+﻿<div id="kt_app_header" class="app-header align-items-stretch bg-white">
+ <div class="app-container container-fluid d-flex align-items-stretch justify-content-between"
+      id="kt_app_header_container">
+  <div class="d-flex align-items-center justify-content-between flex-row-fluid" id="kt_app_header_wrapper">
+   <div class="app-header-logo d-flex align-items-center">
+    <div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="Show sidebar menu">
+     <div class="btn btn-icon btn-active-color-primary w-35px h-35px" id="kt_app_header_menu_toggle">
+      <i class="ki-outline ki-abstract-14 fs-2"></i>
+     </div>
+    </div>
+    <a href="/" class="me-5 me-lg-9">
+     <img alt="Logo" src="img/logo.svg"
+          class="h-100px h-lg-150px theme-light-show"/>
+     <img alt="Logo" src="img/logo.svg"
+          class="h-100px h-lg-150px theme-dark-show"/>
+    </a>
+   </div>
+   <div class="d-flex align-items-stretch" id="kt_app_header_menu_wrapper">
+    <div class="app-header-menu app-header-mobile-drawer align-items-stretch"
+         data-kt-drawer="true"
+         data-kt-drawer-name="app-header-menu"
+         data-kt-drawer-activate="{default: true, lg: false}"
+         data-kt-drawer-overlay="true"
+         data-kt-drawer-width="{default:'200px', '300px': '250px'}"
+         data-kt-drawer-direction="start"
+         data-kt-drawer-toggle="#kt_app_header_menu_toggle"
+         data-kt-swapper="true"
+         data-kt-swapper-mode="prepend"
+         data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_menu_wrapper'}">
+     <div
+      class="fw-bold menu menu-rounded menu-column menu-lg-row menu-active-bg menu-title-gray-600 menu-state-primary menu-arrow-gray-500 fs-6 fw-semibold align-items-stretch my-5 my-lg-0 px-2 px-lg-0"
+      id="#kt_app_header_menu" data-kt-menu="true">
+      <div class="menu-item me-0 me-lg-2">
+       <NavLink href="/">
+        <span class="menu-link">
+         <span class="menu-icon">
+          <i class="fas fa-home fs-3"></i>
+         </span>
+         <span class="menu-title">Home</span>
+        </span>
+       </NavLink>
+      </div>
+      <div class="menu-item me-0 me-lg-2">
+       <NavLink href="/general-view">
+        <span class="menu-link">
+         <span class="menu-title">General View</span>
+        </span>
+       </NavLink>
+      </div>
+      <div class="menu-item me-0 me-lg-2">
+       <NavLink href="/our-price">
+        <span class="menu-link">
+         <span class="menu-title">Our price</span>
+        </span>
+       </NavLink>
+      </div>
+      <div class="menu-item me-0 me-lg-2">
+       <NavLink href="/routes">
+        <span class="menu-link">
+         <span class="menu-title">The Routes</span>
+        </span>
+       </NavLink>
+      </div>
+      <div class="menu-item me-0 me-lg-2">
+       <NavLink href="/term-condition">
+        <span class="menu-link">
+         <span class="menu-title">Terms &amp; Conditions</span>
+        </span>
+       </NavLink>
+      </div>
+      <div class="menu-item me-0 me-lg-2">
+       <NavLink href="/contact-us">
+        <span class="menu-link">
+         <span class="menu-title">Contact Us</span>
+        </span>
+       </NavLink>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="app-navbar flex-shrink-0">
+    <div class="app-navbar-item me-3">
+     <div
+      class="border border-dashed border-gray-300 me-3"
+      data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+      data-kt-menu-attach="parent"
+      data-kt-menu-placement="bottom-end">
+      <img class="h-25px" src="img/language.svg" alt="lang"/>
+      <span class="fw-semibold fs-3">English</span>
+     </div>
+     <div
+      class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-150px"
+      data-kt-menu="true">
+      <div class="menu-item px-5 my-1">
+       <div class="menu-link px-5">
+        <span class="menu-title position-relative">
+         English
+        </span>
+       </div>
+      </div>
+      <div class="menu-item px-5 my-1">
+       <div class="menu-link px-5">
+        <span class="menu-title position-relative">
+         繁体中文
+        </span>
+       </div>
+      </div>
+      <div class="menu-item px-5 my-1">
+       <div class="menu-link px-5">
+        <span class="menu-title position-relative">
+         简体中文
+        </span>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="app-navbar-item ms-2">
+     <a href="/Account/Login"
+        class="btn btn-flex btn-icon btn-success align-self-center fw-bold h-35px w-md-100 py-2 px-4">
+      <span class="d-none d-md-inline ms-1 fs-7">Agent Sign in</span>
+     </a>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+@code {
+ protected override async Task OnAfterRenderAsync(bool firstRender)
+ {
+   await base.OnAfterRenderAsync(firstRender);
+   if (firstRender)
+   {
+    await JsRuntime.InvokeVoidAsync("initTheme");
+   }
+ }
+
+}

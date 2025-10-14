@@ -1,0 +1,73 @@
+is_global = true
+build_property.TargetFramework = net9.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = FunAsiaGo
+build_property.RootNamespace = FunAsiaGo
+build_property.ProjectDir = /Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[/Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/Components/App.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9BcHAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/Components/Layout/BookingMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvQm9va2luZ01lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/Components/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/Components/Pages/AboutUs.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9BYm91dFVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/Components/Pages/ContactUs.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Db250YWN0VXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/Components/Pages/CustomModal.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9DdXN0b21Nb2RhbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/Components/Pages/GeneralView.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9HZW5lcmFsVmlldy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/Components/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ib21lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/Components/Pages/OurPrice.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9PdXJQcmljZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/Components/Pages/TermCondition.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9UZXJtQ29uZGl0aW9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/Components/Pages/TheRoutes.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9UaGVSb3V0ZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/Components/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Sb3V0ZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/Components/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9fSW1wb3J0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 

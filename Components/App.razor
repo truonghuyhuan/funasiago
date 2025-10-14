@@ -1,0 +1,749 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet"
+          href="@Assets["https://fonts.googleapis.com/css?family=Inter:wght@100..900&family=Outfit:wght@100..900"]"/>
+    <link rel="stylesheet" href="@Assets["plugins/datatables/datatables.bundle.css"]"/>
+    <link rel="stylesheet" href="@Assets["plugins/global/plugins.bundle.css"]"/>
+    <link rel="stylesheet" href="@Assets["css/style.bundle.css"]"/>
+    <link rel="stylesheet" href="@Assets["css/custom.css"]"/>
+    <link rel="stylesheet" href="@Assets["css/swiper-bundle.min.css"]"/>
+    <link rel="stylesheet" href="@Assets["css/hero.css"]"/>
+    <link rel="stylesheet"
+          href="@Assets["https://fonts.googleapis.com/css2?family=Kodchasan&display=swap"]"/>
+    <ImportMap />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <HeadOutlet @rendermode="InteractiveServer" />
+    <style>
+        body {
+            font-family: 'Kodchasan', Helvetica, sans-serif !important;
+        }
+    </style>
+</head>
+
+<body id="kt_app_body" data-kt-app-header-fixed="true" class="app-default">
+    <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+        <Routes @rendermode="InteractiveServer" />
+    </div>
+    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+    <i class="ki-duotone ki-arrow-up">
+        <span class="path1"></span><span class="path2"></span>
+    </i>
+</div>
+    <script src="plugins/global/plugins.bundle.js"></script>
+    <script src="js/scripts.bundle.js"></script>
+    <script src="plugins/datatables/datatables.bundle.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/timeline.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/region/world/europeLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script src="_framework/blazor.web.js"></script>
+    <script>
+        var defaultThemeMode = "light";
+        var themeMode;
+        if (document.documentElement) {
+            if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
+                themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
+            } else {
+                if (localStorage.getItem("data-bs-theme") !== null) {
+                    themeMode = localStorage.getItem("data-bs-theme");
+                } else {
+                    themeMode = defaultThemeMode;
+                }
+            }
+
+            if (themeMode === "system") {
+                themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+
+            document.documentElement.setAttribute("data-bs-theme", themeMode);
+        }
+        window.ShowHideSideBar = (isShow) => {
+            document.body.setAttribute("data-kt-app-sidebar-enabled", isShow);
+            document.body.setAttribute("data-kt-app-sidebar-fixed", isShow);
+            document.body.setAttribute("data-kt-app-sidebar-hoverable", isShow);
+        }
+
+        function callSlider() {
+            $('.th-slider').each(function () {
+                var thSlider = $(this);
+                var settings = $(this).data('slider-options') || {};
+
+                // Store references to the navigation Slider
+                var prevArrow = thSlider.find('.slider-prev');
+                var nextArrow = thSlider.find('.slider-next');
+                var paginationEl1 = thSlider.find('.slider-pagination').get(0);
+                var paginationEl2 = thSlider.find('.slider-pagination2');
+                var progressBarEl = thSlider.find('.slider-pagination-progressbar2 .slider-progressbar-fill');
+
+                var sliderDefault = {
+                    slidesPerView: 1,
+                    spaceBetween: settings.spaceBetween || 24,
+                    loop: settings.loop !== false,
+                    speed: settings.speed || 1000,
+                    autoplay: settings.autoplay || {delay: 6000, disableOnInteraction: false},
+                    navigation: {
+                        prevEl: prevArrow.get(0),
+                        nextEl: nextArrow.get(0),
+                    },
+                    pagination: {
+                        el: paginationEl1,
+                        type: settings.paginationType || 'bullets',
+                        clickable: true,
+                        renderBullet: function (index, className) {
+                            var number = index + 1;
+                            var formattedNumber = number < 10 ? '0' + number : number;
+                            return '<span class="' + className + '" aria-label="Go to Slide ' + formattedNumber + '"></span>';
+                        },
+                        renderFraction: function (currentClass, totalClass) {
+                            return (
+                                '<span class="' + currentClass + '"></span> <span class="divider">/</span> <span class="' + totalClass + '"></span>'
+                            );
+                        },
+                        formatFractionCurrent: function (number) {
+                            return number < 10 ? '0' + number : number;
+                        },
+                        formatFractionTotal: function (number) {
+                            return number < 10 ? '0' + number : number;
+                        },
+                    },
+                    on: {
+                        init: function () {
+                            // Update custom fraction pagination
+                            var totalSlides = this.slides.length;
+                            paginationEl2.html(
+                                '<span class="current-slide">01</span> <span class="divider">/</span>  <span class="total-slides">' +
+                                (totalSlides < 10 ? '0' + totalSlides : totalSlides) +
+                                '</span>'
+                            );
+
+                            // Set initial vertical progress bar height
+                            var progress = ((this.activeIndex + 1) / this.slides.length) * 100;
+                            progressBarEl.css('height', progress + '%');
+                        },
+                        slideChange: function () {
+                            // Update custom fraction pagination
+                            var activeIndex = this.realIndex + 1; // Use realIndex for loop mode
+                            var totalSlides = this.slides.length;
+                            paginationEl2.html(
+                                '<span class="current-slide">' +
+                                (activeIndex < 10 ? '0' + activeIndex : activeIndex) +
+                                '</span> <span class="divider">/</span> <span class="total-slides">' +
+                                (totalSlides < 10 ? '0' + totalSlides : totalSlides) +
+                                '</span>'
+                            );
+
+                            // Update vertical progress bar height
+                            var progress = ((this.realIndex + 1) / this.slides.length) * 100;
+                            progressBarEl.css('height', progress + '%');
+                        },
+                    },
+                };
+
+                var options = $.extend({}, sliderDefault, settings);
+                new Swiper(thSlider.get(0), options); // Initialize Swiper
+            });
+
+            $("[data-slider-prev], [data-slider-next]").on("click", (function () {
+                    ($(this).data("slider-prev") || $(this).data("slider-next")).split(", ").forEach((function (t) {
+                            var a = $(t);
+                            if (a.length) {
+                                var i = a[0].swiper;
+                                i && ($(this).data("slider-prev") ? i.slidePrev() : i.slideNext())
+                            }
+                        }
+                    ))
+                }
+            ))
+            var r = new Swiper(".hero-slider-2", {
+                spaceBetween: 10,
+                effect: "fade",
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: !0
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev"
+                },
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: !1
+                },
+                speed: 2000,
+                loop: !0,
+                watchSlidesProgress: !0
+            });
+        }
+
+        function callShowDrawer(id) {
+            let drawerEl = document.querySelector(id);
+            let drawer = KTDrawer.getInstance(drawerEl);
+            drawer.show();
+        }
+
+        window.initTheme = () => {
+            KTComponents.init();
+            KTThemeMode.init();
+            callSlider();
+        }
+        window.datepickerNew = (s = "d/m/y", i = true) => {
+            "undefined" != typeof jQuery && void 0 !== $.fn.select2 && ([].slice.call(document.querySelectorAll('[data-control="date-picker"]')).map(function (e) {
+                $(e).flatpickr({
+                    altInput: i,
+                    allowInput: i,
+                    altFormat: s,
+                    weekNumbers: !0
+                });
+
+            }));
+            Inputmask({
+                "mask": "99/99/99"
+            }).mask('.edit-picker');
+        };
+        window.tourDatepicker = (d, s = "D F j, Y") => {
+            "undefined" != typeof jQuery && void 0 !== $.fn.select2 && ([].slice.call(document.querySelectorAll('[data-control="date-picker"]')).map(function (e) {
+                $(e).flatpickr({
+                    altInput: true,
+                    altFormat: s,
+                    dateFormat: "Y-m-d",
+                    enable: d,
+                });
+            }));
+        };
+        window.initMap = (dotnet, data, g = 0) => {
+            am5.ready(function () {
+                let polygonColor = am5.color(0x99c2ff);
+                let root = am5.Root.new("chartdiv");
+                let myTheme = am5.Theme.new(root);
+                myTheme.rule("InterfaceColors").setAll({
+                    primaryButton: am5.color(0x005ce6),
+                    primaryButtonHover: am5.Color.lighten(am5.color(0x005ce6), 0.2),
+                    primaryButtonDown: am5.Color.lighten(am5.color(0x005ce6), -0.2),
+                    primaryButtonActive: polygonColor,
+                });
+                myTheme.rule("Label").setAll({
+                    fontSize: "0.8em"
+                });
+                root.setThemes([am5themes_Animated.new(root), myTheme]);
+                let chart = root.container.children.push(am5map.MapChart.new(root, {
+                    rotationX: -110,
+                    panX: "rotateX",
+                    panY: "rotateY",
+                    projection: g === 0 ? am5map.geoOrthographic() : am5map.geoMercator(),
+                    fillOpacity: 0.1,
+                    paddingBottom: 20,
+                    paddingTop: 20,
+                    paddingLeft: 20,
+                    paddingRight: 20
+                }));
+                let colorSet = am5.ColorSet.new(root, {});
+                let graticuleSeries = chart.series.unshift(
+                    am5map.GraticuleSeries.new(root, {
+                        step: 10
+                    })
+                );
+                graticuleSeries.mapLines.template.set("strokeOpacity", 0.05)
+
+                let polygonSeries = chart.series.push(
+                    am5map.MapPolygonSeries.new(root, {
+                        geoJSON: am5geodata_worldLow,
+                        valueField: "value",
+                        calculateAggregates: true,
+                        exclude: ["AQ"]
+                    })
+                );
+                polygonSeries.mapPolygons.template.setAll({
+                    tooltipText: "{name}",
+                    toggleKey: "active",
+                    interactive: true
+                });
+                polygonSeries.mapPolygons.template.adapters.add("fill", function (fill, target) {
+                    return am5.Color.saturate(
+                        colorSet.getIndex(polygonSeries.mapPolygons.indexOf(target)),
+                        0.5
+                    );
+                });
+                polygonSeries.mapPolygons.template.states.create("hover", {
+                    fill: root.interfaceColors.get("primaryButtonHover")
+                });
+
+                polygonSeries.mapPolygons.template.states.create("active", {
+                    fill: root.interfaceColors.get("primaryButtonHover")
+                });
+
+                polygonSeries.mapPolygons.template.events.on("click", (function (e) {
+                        let id = e.target.dataItem.dataContext.id;
+                        let oId = data.filter(w => w.id === id);
+                        if (oId[0] !== undefined) {
+                            dotnet.invokeMethodAsync('MapCallBack', id);
+                            callShowDrawer("#kt_drawer_package_tour");
+                        }
+                    }
+                ));
+
+                polygonSeries.set("heatRules", [{
+                    target: polygonSeries.mapPolygons.template,
+                    dataField: "value",
+                    min: am5.color(0xd3a29f),
+                    max: am5.color(0x6f0600),
+                    key: "fill"
+                }]);
+
+                polygonSeries.mapPolygons.template.setAll({
+                    tooltipText: "{name}",
+                    fill: polygonColor,
+                    stroke: am5.color(0xffffff)
+                });
+                polygonSeries.data.setAll(data);
+
+                let bubbleSeries = chart.series.push(
+                    am5map.MapPointSeries.new(root, {
+                        valueField: "value",
+                        calculateAggregates: true,
+                        polygonIdField: "id"
+                    })
+                );
+
+                let circleTemplate = am5.Template.new({});
+
+                bubbleSeries.bullets.push(function (root, series, dataItem) {
+                    let container = am5.Container.new(root, {});
+
+                    let circle = container.children.push(
+                        am5.Circle.new(root, {
+                            radius: 10,
+                            fillOpacity: 0.5,
+                            fill: am5.color(0x071437),
+                            cursorOverStyle: "pointer",
+                            tooltipText: `{name}: [bold]{value}[/]`
+                        }, circleTemplate)
+                    );
+
+                    let countryLabel = container.children.push(
+                        am5.Label.new(root, {
+                            text: "{name}",
+                            paddingLeft: 5,
+                            populateText: true,
+                            fontWeight: "bold",
+                            fontSize: 13,
+                            centerY: am5.p50
+                        })
+                    );
+
+                    circle.on("radius", function (radius) {
+                        countryLabel.set("x", radius);
+                    })
+                    circle.events.on("click", function (e) {
+                        dotnet.invokeMethodAsync('MapCallBack', e.target.dataItem.get("id"));
+                        let drawerEl = document.querySelector("#kt_drawer_package_tour");
+                        let drawer = KTDrawer.getInstance(drawerEl);
+                        drawer.show();
+                    });
+                    return am5.Bullet.new(root, {
+                        sprite: container,
+                        dynamic: true
+                    });
+                });
+                bubbleSeries.bullets.push(function (root, series, dataItem) {
+                    return am5.Bullet.new(root, {
+                        sprite: am5.Label.new(root, {
+                            text: "{value.formatNumber('#.')}",
+                            fill: am5.color(0xffffff),
+                            populateText: true,
+                            centerX: am5.p50,
+                            centerY: am5.p50,
+                            textAlign: "center"
+                        }),
+                        dynamic: true
+                    });
+                });
+                bubbleSeries.data.setAll(data);
+                if (g === 0) {
+                    chart.animate({
+                        key: "rotationX",
+                        from: 0,
+                        to: 360,
+                        duration: 30000,
+                        loops: Infinity
+                    });
+                }
+            });
+        };
+        window.initSlider = () => {
+            callSlider();
+        };
+        window.showDrawer = (id) => {
+            callShowDrawer(id);
+        }
+        window.initChartLine = (id, data, cat, type = 'area', symbol = '$') => {
+            let element = document.getElementById(id);
+
+            let height = parseInt(KTUtil.css(element, 'height'));
+            let labelColor = KTUtil.getCssVariableValue("--bs-gray-500");
+            let borderColor = KTUtil.getCssVariableValue('--bs-gray-200');
+            let baseColor = KTUtil.getCssVariableValue("--bs-success");
+            let lightColor = KTUtil.getCssVariableValue('--bs-success-light');
+            if (!element) {
+                return;
+            }
+
+            let options = {
+                series: data,
+                chart: {
+                    fontFamily: 'inherit',
+                    type: type,
+                    height: height,
+                    toolbar: {
+                        show: false
+                    }
+                },
+                plotOptions: {},
+                // legend: {
+                //     show: false
+                // },
+                dataLabels: {
+                    enabled: false
+                },
+                fill: {
+                    type: 'solid',
+                    opacity: 1
+                },
+                stroke: {
+                    curve: 'smooth',
+                    show: true,
+                    width: 3,
+                },
+                xaxis: {
+                    categories: cat,
+                    axisBorder: {
+                        show: false,
+                    },
+                    axisTicks: {
+                        show: false
+                    },
+                    labels: {
+                        style: {
+                            colors: labelColor,
+                            fontSize: '12px'
+                        }
+                    },
+                    crosshairs: {
+                        position: 'front',
+                        stroke: {
+                            color: baseColor,
+                            width: 1,
+                            dashArray: 3
+                        }
+                    },
+                    tooltip: {
+                        enabled: true,
+                        formatter: undefined,
+                        offsetY: 0,
+                        style: {
+                            fontSize: '12px'
+                        }
+                    }
+                },
+                yaxis: {
+                    labels: {
+                        style: {
+                            colors: labelColor,
+                            fontSize: '12px'
+                        }
+                    }
+                },
+                states: {
+                    normal: {
+                        filter: {
+                            type: 'none',
+                            value: 0
+                        }
+                    },
+                    hover: {
+                        filter: {
+                            type: 'none',
+                            value: 0
+                        }
+                    },
+                    active: {
+                        allowMultipleDataPointsSelection: false,
+                        filter: {
+                            type: 'none',
+                            value: 0
+                        }
+                    }
+                },
+                tooltip: {
+                    style: {
+                        fontSize: '12px'
+                    },
+                    y: {
+                        formatter: function (val) {
+                            return symbol + val
+                        }
+                    }
+                },
+                grid: {
+                    borderColor: borderColor,
+                    strokeDashArray: 4,
+                    yaxis: {
+                        lines: {
+                            show: true
+                        }
+                    }
+                },
+                markers: {
+                    strokeColor: baseColor,
+                    strokeWidth: 3
+                }
+            };
+
+            let chart = new ApexCharts(element, options);
+            chart.render();
+        }
+        window.initChartDotNut = (id, data, cat) => {
+            let element = document.getElementById(id);
+            if (!element) {
+                return;
+            }
+            let options = {
+                series: data,
+                chart: {
+                    width: 380,
+                    fontFamily: "inherit",
+                    type: "donut",
+                },
+                labels: cat,
+                plotOptions: {
+                    pie: {
+                        donut: {
+                            size: "50%",
+                            labels: {
+                                value: {
+                                    fontSize: "10px"
+                                }
+                            }
+                        }
+                    }
+                },
+                stroke: {
+                    width: 0
+                }
+            };
+
+            let chart = new ApexCharts(element, options);
+            chart.render();
+        }
+        window.roadTrip = (data) => {
+            am5.ready(function () {
+
+                const mainColor = am5.color(0xc83830);
+                let serpentineSeries;
+                let root = am5.Root.new("tourdiv");
+
+                root.setThemes([
+                    am5themes_Animated.new(root)
+                ]);
+
+                // Create chart
+                let chart = root.container.children.push(am5timeline.SerpentineChart.new(root, {
+                    levelCount: 3,
+                    startLocation: 0.2,
+                    endLocation: 1,
+                    wheelY: "zoomX",
+                    yAxisRadius: am5.percent(20)
+                }));
+
+                let yRenderer = am5timeline.AxisRendererCurveY.new(root, {});
+
+                yRenderer.labels.template.setAll({
+                    forceHidden: true
+                });
+
+                yRenderer.grid.template.set("forceHidden", true);
+
+                // Create axes and their renderers
+                let xRenderer = am5timeline.AxisRendererCurveX.new(root, {
+                    yRenderer: yRenderer,
+                    strokeDasharray: [2, 3],
+                    strokeWidth: 2,
+                    strokeOpacity: 0.5,
+                    stroke: am5.color(0x000000)
+                });
+
+                xRenderer.labels.template.setAll({
+                    centerY: am5.p50,
+                    fontSize: 11,
+                    fill: am5.color(0x777777),
+                    minPosition: 0.01,
+                    maxPosition: 0.99
+                });
+
+                xRenderer.grid.template.set("forceHidden", true);
+
+                xRenderer.labels.template.setup = function (target) {
+                    target.set("layer", 30);
+                    target.set("background", am5.Rectangle.new(root, {
+                        fill: am5.color(0xffffff),
+                        fillOpacity: 1
+                    }));
+                }
+
+
+                let yAxis = chart.yAxes.push(am5xy.CategoryAxis.new(root, {
+                    maxDeviation: 0,
+                    categoryField: "category",
+                    renderer: yRenderer
+                }));
+
+                let xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
+                    renderer: xRenderer,
+                    numberFormat: "#' km'",
+                }));
+
+                // Data
+                let colorSet = chart.get("colors");
+
+                serpentineSeries = chart.series.push(am5timeline.CurveLineSeries.new(root, {
+                    xAxis: xAxis,
+                    yAxis: yAxis,
+                    baseAxis: yAxis,
+                    valueField: "population",
+                    valueXField: "distance",
+                    categoryYField: "category",
+                    idField: "name",
+                    maskBullets: false,
+                    calculateAggregates: true
+                }));
+
+                serpentineSeries.strokes.template.setAll({
+                    forceHidden: true
+                });
+
+                let circleTemplate = am5.Template.new(root, {});
+
+                serpentineSeries.set("heatRules", [{
+                    target: circleTemplate,
+                    min: 6,
+                    max: 15,
+                    dataField: "value",
+                    key: "radius"
+                }]);
+
+                serpentineSeries.bullets.push(function (root, series, dataItem) {
+                    let container = am5.Container.new(root, {});
+
+                    let circle = container.children.push(am5.Circle.new(root, {
+                        radius: 9,
+                        fill: mainColor,
+                        stroke: mainColor,
+                        strokeWidth: 2,
+                        strokeOpacity: 0.8,
+                        layer: 30,
+                        tooltipText: "[bold fontSize: 20px]{name}[/]\n{date.formatDate('MMM dd, yyyy')}\nTotal Distance: {distance}km\nMoving: {moving}km",
+                        tooltipY: 0,
+                        fillOpacity: 0.7
+                    }, circleTemplate));
+
+                    circle.states.create("hover", {
+                        scale: 1.5,
+                        fillOpacity: 1
+                    });
+
+                    let label = container.children.push(am5.Label.new(root, {
+                        text: "{name}",
+                        fontSize: 13,
+                        centerY: am5.p100,
+                        centerX: am5.p50,
+                        populateText: true,
+                        layer: 30
+                    }));
+
+                    label.adapters.add("dy", function (dy, target) {
+                        return -circle.get("radius");
+                    });
+
+                    return am5.Bullet.new(root, {
+                        sprite: container,
+                        locationX: 0,
+                        locationY: 0.5
+                    })
+                })
+
+                let cursor = chart.set("cursor", am5timeline.CurveCursor.new(root, {
+                    behavior: "zoomX",
+                    xAxis: xAxis,
+                    yAxis: yAxis
+                }));
+
+                cursor.lineY.set("forceHidden", true);
+                cursor.lineX.set("forceHidden", true);
+
+                serpentineSeries.data.setAll(data);
+
+                yAxis.data.setAll([
+                    {category: "city"}
+                ]);
+                serpentineSeries.appear(1000);
+                chart.appear(1000, 100);
+            });
+        }
+        window.resetScrollTrigger = () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+            document.querySelectorAll(".panel-main").forEach(el => el.remove());
+            ScrollTrigger.refresh();
+        }
+        window.aniHome = () => {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.from(".move-top", {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.3,
+            });
+            ScrollTrigger.create({
+                trigger: ".panel-main",
+                start: "top 10%",
+                end: "+=100%",
+                pin: true,
+                pinSpacing: false,
+            });
+        }
+        window.initChangeImg = () => {
+            const boxs = document.querySelectorAll('.card-img-tour');
+            boxs.forEach((box) => {
+                let interval;
+                const defaultImage = box.getAttribute('data-default');
+                const hoverImage = box.getAttribute('data-hover');
+                const startCycle = () => {
+                    interval = setInterval(() => {
+                        box.style.backgroundImage = `url('${hoverImage}')`;
+                    }, 700);
+                };
+
+                const stopCycle = () => {
+                    clearInterval(interval);
+                    box.style.backgroundImage = `url('${defaultImage}')`;
+                };
+
+                // Desktop hover
+                box.addEventListener('mouseenter', startCycle);
+                box.addEventListener('mouseleave', stopCycle);
+                // Mobile touch
+                box.addEventListener('touchstart', startCycle);
+                box.addEventListener('touchend', stopCycle);
+            });
+        }
+    </script>
+</body>
+
+</html>

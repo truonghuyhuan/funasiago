@@ -1,0 +1,268 @@
+﻿@page "/routes"
+@using FunAsiaGo.Dto.Responses
+@inject NavigationManager _navigationManager
+@inject IHttpService _httpService
+
+<div class="container mt-10 fs-4">
+    <div class="row mb-20">
+        <div class="col-md-6">
+            <h1 class="fs-3x fw-bolder">The Routes</h1>
+            <p class="fs-3 mb-10">Our most flexible way to travel. Visit every destination on your wish list!</p>
+            @if (_items is { Count: > 0 })
+            {
+                var gCountry = _items.GroupBy(g => g.Country).Select(s => s.Key).ToList();
+                foreach (var g in gCountry)
+                {
+                    <h2 class="fw-bolder text-uppercase mb-4 fs-2x">@GetCountryName($"{g}")</h2>
+                    foreach (var t in _items.Where(w => w.Country == g).WithIndex())
+                    {
+                        <div
+                            class="d-flex align-items-center mb-4 bg-hover-gray-300">
+                            <span class="bullet bullet-vertical min-h-40px me-6"
+                                  style="background-color: var(@($"--bs-{t.item.Color}")"></span>
+                            <div class="flex-grow-1">
+                                <a class="text-gray-800 text-hover-primary fw-bold fs-6 text-uppercase"
+                                   href="@($"/booking/{t.item.Id}?slug={t.item.Slug}")">@t.item.Name</a>
+                            </div>
+                            <div class="separator border-2"></div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+        <div class="col-md-6 d-none d-md-block">
+            <img class="w-100" src="/img/all-tour-lines-map.webp" alt=""/>
+        </div>
+    </div>
+    <h1 class="mb-6 text-center fs-3hx fw-bolder mt-10">
+        Joining points
+    </h1>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    @if (_items is { Count: > 0 })
+                    {
+                        @foreach (var t in _items.WithIndex())
+                        {
+                            <div
+                                class="d-flex align-items-center mb-4 @(t.index == iSelectTour ? "bg-light-primary" : "")"
+                                @onclick="() => { iSelectTour = t.index; StateHasChanged(); }">
+                                <span class="bullet bullet-vertical h-40px me-6"
+                                      style="background-color: var(@($"--bs-{t.item.Color}")"></span>
+                                <div class="flex-grow-1">
+                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6"
+                                       @onclick:preventDefault="true">@t.item.Name</a>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    @if (_items is { Count: > 0 })
+                    {
+                        var oTour = _items[iSelectTour];
+                        _stops = oTour.Days?.SelectMany(s => s.Stops!).ToList();
+                        if (_stops is { Count: > 0 })
+                        {
+                            _stops = _stops.Where(w => w.IsJoin).ToList();
+                            if (_stops is { Count: > 0 })
+                            {
+                                foreach (var t in _stops.WithIndex())
+                                {
+                                    <div
+                                        class="d-flex align-items-center mb-4 @(t.index == iSelectStop ? "bg-light-info" : "")"
+                                        @onclick="() => { iSelectStop = t.index; StateHasChanged(); }">
+                                        <span class="bullet bullet-vertical h-40px bg-info me-6"></span>
+                                        <div class="flex-grow-1">
+                                            <a href="#"
+                                               class="text-gray-800 text-hover-primary fw-bold fs-6"
+                                               @onclick:preventDefault="true">@t.item.Name</a>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        @if (_stops is { Count: > 0 })
+        {
+            var oStop = _stops[iSelectStop];
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h4>@oStop.Name @oStop.Time</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @if (oStop.Mi.NotIsNullOrEmpty())
+                        {
+                            <img class="w-100 h-200px" src="/images/tour/@oStop.Mi" alt=""/>
+                        }
+                        @if ($"{oStop.Ml}".Length >= 4 && $"{oStop.Ml}"[..4] == "http")
+                        {
+                            <a href="@oStop.Ml" class="btn btn-primary my-6" target="_blank"><i
+                                    class="fas fa-directions"></i> Directions</a>
+                        }
+                        else
+                        {
+                            <h3>@oStop.Ml</h3>
+                        }
+                        <h2 class="fw-bold text-center">MEETING POINT</h2>
+                        <p>Meeting point: @oStop.Mp</p>
+                        <p>Address: @oStop.Ma</p>
+                        <div class="separator border-light my-6"></div>
+                        <p class="text-muted fw-semibold d-block">@oStop.Md</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+<div class="container fs-4">
+    <h1 class="mb-6 text-center fs-3x fw-bolder mt-10">
+        Drop off points
+    </h1>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    @if (_items is { Count: > 0 })
+                    {
+                        @foreach (var t in _items.WithIndex())
+                        {
+                            <div
+                                class="d-flex align-items-center mb-4 @(t.index == iSelectTour1 ? "bg-light-primary" : "")"
+                                @onclick="() => { iSelectTour1 = t.index; StateHasChanged(); }">
+                                <span class="bullet bullet-vertical h-40px me-6"
+                                      style="background-color: var(@($"--bs-{t.item.Color}")"></span>
+                                <div class="flex-grow-1">
+                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6"
+                                       @onclick:preventDefault="true">@t.item.Name</a>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    @if (_items is { Count: > 0 })
+                    {
+                        var oTour = _items[iSelectTour1];
+                        _stop1s = oTour.Days?.SelectMany(s => s.Stops!).ToList();
+                        if (_stop1s is { Count: > 0 })
+                        {
+                            _stop1s = _stop1s.Where(w => w.IsLeave).ToList();
+                            if (_stop1s is { Count: > 0 })
+                            {
+                                foreach (var t in _stop1s.WithIndex())
+                                {
+                                    <div
+                                        class="d-flex align-items-center mb-4 @(t.index == iSelectStop1 ? "bg-light-info" : "")"
+                                        @onclick="() => { iSelectStop1 = t.index; StateHasChanged(); }">
+                                        <span class="bullet bullet-vertical h-40px bg-info me-6"></span>
+                                        <div class="flex-grow-1">
+                                            <a href="#"
+                                               class="text-gray-800 text-hover-primary fw-bold fs-6"
+                                               @onclick:preventDefault="true">@t.item.Name</a>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        @if (_stop1s is { Count: > 0 })
+        {
+            var oStop = _stop1s[iSelectStop1];
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h4>@oStop.Name @oStop.Time</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @if (oStop.Mi.NotIsNullOrEmpty())
+                        {
+                            <img class="w-100 h-200px" src="/images/tour/@oStop.Mi" alt=""/>
+                        }
+                        @if ($"{oStop.Ml}".Length >= 4 && $"{oStop.Ml}"[..4] == "http")
+                        {
+                            <a href="@oStop.Ml" class="btn btn-primary my-6" target="_blank"><i
+                                    class="fas fa-directions"></i> Directions</a>
+                        }
+                        else
+                        {
+                            <h3>@oStop.Ml</h3>
+                        }
+                        <h2 class="fw-bold text-center">DROP OFF POINT</h2>
+                        <p>Meeting point: @oStop.Mp</p>
+                        <p>Address: @oStop.Ma</p>
+                        <div class="separator border-light my-6"></div>
+                        <p class="text-muted fw-semibold d-block">@oStop.Md</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+@code
+{
+    private List<TourProductionDto>? _items;
+    [Parameter] public string? Id { get; set; }
+    private int iSelectTour = 0;
+    private int iSelectStop = 0;
+    private int iSelectTour1 = 0;
+    private int iSelectStop1 = 0;
+    private List<StopDto>? _stops = [];
+    private List<StopDto>? _stop1s = [];
+
+    private bool _initAni = false;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        _items = await _httpService.GetAsync<List<TourProductionDto>>("/api/tourproduction");
+        if (_items is { Count: > 0 })
+        {
+            foreach (var item in _items)
+            {
+                foreach (var stop in item.Days!.SelectMany(day => day.Stops!))
+                {
+                    stop.TourId = $"{item.Id}";
+                }
+            }
+        }
+        _items = _items?.OrderBy(o => o.Country).ToList();
+    }
+    
+    private string GetCountryName(string code)
+    {
+        return $"{code}".ToUpper() switch
+        {
+            "MY" => "MALAYSIA",
+            "TH" => "THAI LAND",
+            "CN" => "CHINA",
+            "AU" => "AUSTRALIA",
+            _ => "VIET NAM"
+        };
+    }
+} 
