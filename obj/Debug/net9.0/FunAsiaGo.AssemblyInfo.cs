@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FunAsiaGo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c67a24482611acd19c8e1ff6c4f843096216f8f5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa62997beb58e91daa686c1b63eb959cc4a257e4")]
 [assembly: System.Reflection.AssemblyProductAttribute("FunAsiaGo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FunAsiaGo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
