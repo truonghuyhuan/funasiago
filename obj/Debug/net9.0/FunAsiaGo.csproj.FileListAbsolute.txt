@@ -261,3 +261,4 @@ C:/Projects/V9/2024/FunAsia/FunAsiaGo/obj/Debug/net9.0/compressed/10hjlkp01a-39g
 /Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/obj/Debug/net9.0/FunAsiaGo.pdb
 /Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/obj/Debug/net9.0/FunAsiaGo.genruntimeconfig.cache
 /Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/obj/Debug/net9.0/ref/FunAsiaGo.dll
+/Users/gin/Library/CloudStorage/GoogleDrive-tiennguyenle1987@gmail.com/My Drive/FunAsiaGo/Source Code/FunAsiaGo/obj/Debug/net9.0/FunAsiaGo.sourcelink.json

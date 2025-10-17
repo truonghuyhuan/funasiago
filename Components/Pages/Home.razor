@@ -4,143 +4,150 @@
 @inject NavigationManager _navigationManager
 @inject ILocalStorageService _LocalStorage
 @inject IHttpService _httpService
-<PageTitle>Home</PageTitle>
-<section style="z-index: 1; position: relative" class="panel-main">
-    <div class="row mx-2 mx-md-10 mt-4">
-        <div class="col-md-6 col-sm-12">
-            <h1 class="fw-bolder fs-3x mt-10" id="title">Discover Asia Your Way</h1>
-            <div class="fs-3 fw-bold">Current Asian Destination Available</div>
-            <div class="d-flex justify-content-between align-items-center my-3 pe-20 me-20">
-                <button class="btn btn-warning fw-bolder fs-4 w-100 me-2"
+<PageTitle>Fun Asia Go - Discover Asia Your Way</PageTitle>
+
+<section class="pt-3 pb-13">
+<div class="container">
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+    <div class="d-flex flex-column justify-content-center h-100 gap-3">
+        <div>
+            <h1 id="title" class="fs-3x">Discover Asia Your Way</h1>
+            <div class="fs-3">Current Asian Destination Available</div>
+        </div>
+      <div class="d-flex gap-3">
+                <button class="btn btn-warning fw-bolder fs-3"
                         @onclick="async () => {await SetFilterCountry(2);}">Malaysia
                 </button>
-                <button class="btn btn-primary fw-bolder fs-4 w-100 me-2" style="background-color: #001478 !important;"
+                <button class="btn btn-primary fw-bolder fs-3" style="background-color: #001478 !important;"
                         @onclick="async () => {await SetFilterCountry(1);}">
                     ThaiLand
                 </button>
-                <button class="btn btn-danger fw-bolder fs-4 w-100 me-2"
+                <button class="btn btn-danger fw-bolder fs-3"
                         @onclick="async () => {await SetFilterCountry(0);}">Vietnam
                 </button>
             </div>
+        <div>
             <div class="d-flex align-items-center">
                 <div class="symbol symbol-25px me-3">
                     <img src="img/icons/el-usd.svg" alt="">
                 </div>
-                <h3 class="fw-bold fs-3">Fixed day price</h3>
+                <div class="fs-3">Fixed day price</div>
             </div>
             <div class="d-flex align-items-center">
                 <div class="symbol symbol-25px me-3">
                     <img src="img/icons/bxs-plane-alt.svg" alt="">
                 </div>
-                <h3 class="fw-bold fs-3">Guarantee weekly departure year around</h3>
+                <div class="fs-3">Guarantee weekly departure year around</div>
             </div>
             <div class="d-flex align-items-center">
                 <div class="symbol symbol-25px me-3">
                     <img src="img/icons/mingcute-suitcase-fill.svg" alt="">
                 </div>
-                <h3 class="fw-bold fs-3">Free to join and leave</h3>
+                <div class="fs-3">Free to join and leave</div>
             </div>
             <div class="d-flex align-items-center">
                 <div class="symbol symbol-25px me-3">
                     <img src="img/icons/tabler-bus-filled.svg" alt="">
                 </div>
-                <h3 class="fw-bold fs-3">Easily mix &amp; match routes</h3>
+                <div class="fs-3">Easily mix &amp; match routes</div>
             </div>
             <div class="d-flex align-items-center">
                 <div class="symbol symbol-25px me-3">
                     <img src="img/icons/solar-city-bold-duotone.svg" alt="">
                 </div>
-                <h3 class="fw-bold fs-3">Over 30 cities / provinces</h3>
+                <div class="fs-3">Over 30 cities / provinces</div>
             </div>
-            <a href="/routes">
-                <div class="price-box my-6 fs-1">
-                    <div class="price-2">
-                        <div class="price-3">
-                            <div>Tour Price</div>
-                            <p>
-                                USD <span class="fs-3x"> $82</span> /Day
-                            </p>
+        </div>
+        <div class="d-flex flex-column gap-3">
+            <div class="d-flex flex-column align-items-start">
+                <div class="rounded-4 p-4 mx-10" style="background-color: #79da5a;">
+                    <div class="d-flex flex-column">
+                        <div class="fs-3 fw-bold" style="color: #fff">Tour Price</div>
+                        <div class="fs-3" style="color: #fff">USD <span class="fs-3x fw-bold">$82</span> /Day</div>
+                    </div>
+                    <div class="px-5 py-2 rounded" style="background-color: #1c5d07;">
+                        <a href="/routes" class="w-100">
+                            <div class="fs-3 text-center" style="color: #fff">
+                                Book Now
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="d-md-flex flex-md-row gap-10">
+                <div class="d-flex flex-column gap-3">
+                    <div class="fs-3 fw-bold">Including</div>
+                    <div class="d-flex flex-column">
+                        <div class="d-flex align-items-center mb-2 move-top">
+                            <i class="ki-duotone ki-check-circle fs-1 text-success me-3">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <span class="fs-4">Accommodation with breakfast (Minimum 2 days/twin share).</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-2 move-top">
+                            <i class="ki-duotone ki-check-circle fs-1 text-success me-3">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <span class="fs-4">Transportation.</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-2 move-top">
+                            <i class="ki-duotone ki-check-circle fs-1 text-success me-3">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <span class="fs-4">English-speaking guide.</span>
                         </div>
                     </div>
-                    <div class="btn-book-now fw-bold">Book Now</div>
                 </div>
-            </a>
-            <div class="row" style="font-size: 1.2rem;">
-                <div class="col-md-6">
-                    <div class="fw-bold fs-2">Including</div>
-                    <div class="d-flex align-items-center mb-2 move-top">
-                        <i class="ki-duotone ki-check-circle fs-1 text-success me-3">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                        <span class="fw-semibold text-gray-800 flex-grow-1 pe-3">
-                        Accommodation with breakfast (Minimum 2 days/twin share).
-                    </span>
-                    </div>
-                    <div class="d-flex align-items-center mb-2 move-top">
-                        <i class="ki-duotone ki-check-circle fs-1 text-success me-3">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                        <span class="fw-semibold text-gray-800 flex-grow-1 pe-3"> Transportation.
-                    </span>
-                    </div>
-                    <div class="d-flex align-items-center mb-2 move-top">
-                        <i class="ki-duotone ki-check-circle fs-1 text-success me-3">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                        <span class="fw-semibold text-gray-800 flex-grow-1 pe-3">
-                        English-speaking guide.
-                    </span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="fw-bold fs-2">Excluding</div>
-                    <div class="d-flex align-items-center mb-2 move-top">
-                        <i class="ki-duotone ki-cross-circle fs-1 text-danger me-3">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                        <span class="fw-semibold text-gray-800 flex-grow-1 pe-3">
-                        Air tickets & related expenses.
-                    </span>
-                    </div>
-                    <div class="d-flex align-items-center mb-2 move-top">
-                        <i class="ki-duotone ki-cross-circle fs-1 text-danger me-3">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                        <span class="fw-semibold text-gray-800 flex-grow-1 pe-3">
-                        Travel insurance and visa fees.
-                    </span>
-                    </div>
-                    <div class="d-flex align-items-center mb-2 move-top">
-                        <i class="ki-duotone ki-cross-circle fs-1 text-danger me-3">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                        <span class="fw-semibold text-gray-800 flex-grow-1 pe-3">
-                        Attraction entrance fees & other personal expenses.
-                    </span>
-                    </div>
-                    <div class="d-flex align-items-center mb-2 move-top">
-                        <i class="ki-duotone ki-cross-circle fs-1 text-danger me-3">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                        <span class="fw-semibold text-gray-800 flex-grow-1 pe-3">
-                        Gratuity at USD $5 per day per person paying full adult tour price.
-                    </span>
+                <div class="d-flex flex-column gap-3">
+                    <div class="fs-3 fw-bold">Excluding</div>
+                    <div class="d-flex flex-column">
+                        <div class="d-flex align-items-center mb-2 move-top">
+                            <i class="ki-duotone ki-cross-circle fs-1 text-danger me-3">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <span class="fs-4">Air tickets & related expenses.</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-2 move-top">
+                            <i class="ki-duotone ki-cross-circle fs-1 text-danger me-3">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <span class="fs-4">Travel insurance and visa fees.</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-2 move-top">
+                            <i class="ki-duotone ki-cross-circle fs-1 text-danger me-3">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <span class="fs-4">Attraction entrance fees & other personal expenses.</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-2 move-top">
+                            <i class="ki-duotone ki-cross-circle fs-1 text-danger me-3">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <span class="fs-4">Gratuity at USD $5 per day per person paying full adult tour price.</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 d-none d-md-block px-10 pb-10">
-            <img class="w-100" src="/img/all-tour-lines-map.webp" alt=""/>
-        </div>
     </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div>
+      <img class="w-100" src="/img/all-tour-lines-map.webp" alt=""/>
+      </div> 
+    </div>
+  </div>
+</div>
 </section>
+
 @if (!RendererInfo.IsInteractive)
 {
     <p>Loading....</p>
@@ -149,62 +156,64 @@ else
 {
     if (_items is { Count: > 0 })
     {
-        <section class="bg-body" style="z-index: 2; position: relative">
-            <div class="row mx-2 mx-md-10">
-                @foreach (var item in _items)
-                {
-                    var path = $"{item.MediaSources?.Find(w => w.Scope == 0)?.Path}";
-                    var paths = item.Days?.Where(w => w.MediaSource != null)
-                        .SelectMany(s => s.MediaSource!.Where(w => w.Scope == 0).Select(sm => sm.Path)).ToList();
-                    var path1 = path;
-                    if (paths is { Count: > 0 })
+        <section class="">
+            <div class="container">
+                <div class="row">
+                    @foreach (var item in _items)
                     {
-                        var rand = new Random();
-                        var index = rand.Next(paths.Count());
-                        path1 = paths[index];
-                    }
+                        var path = $"{item.MediaSources?.Find(w => w.Scope == 0)?.Path}";
+                        var paths = item.Days?.Where(w => w.MediaSource != null)
+                            .SelectMany(s => s.MediaSource!.Where(w => w.Scope == 0).Select(sm => sm.Path)).ToList();
+                        var path1 = path;
+                        if (paths is { Count: > 0 })
+                        {
+                            var rand = new Random();
+                            var index = rand.Next(paths.Count());
+                            path1 = paths[index];
+                        }
 
-                    if (path.Length > 4 && path[..4] != "http")
-                    {
-                        path = $"{_navigationManager.BaseUri}images/tour/{path}";
-                        path1 = $"{_navigationManager.BaseUri}images/tour/{path1}";
-                    }
+                        if (path.Length > 4 && path[..4] != "http")
+                        {
+                            path = $"{_navigationManager.BaseUri}images/tour/{path}";
+                            path1 = $"{_navigationManager.BaseUri}images/tour/{path1}";
+                        }
 
-                    <div class="col-md-4 col-sm-12 mb-10">
-                        <div class="card card-flush h-xl-100 card-tour">
-                            <div
-                                class="card-header rounded bgi-no-repeat bgi-size-cover bgi-position-y-top bgi-position-x-center align-items-start min-h-300px card-img-tour"
-                                style="background-image:url('@path')" data-default="@path" data-hover="@path1"
-                                data-bs-theme="light">
-                                <img class="d-none w-1px h-1px" src="@path1" alt=""/>
-                            </div>
-                            <div class="card-body">
-                                <div class="position-relative ps-6 pe-3 py-2">
-                                    <div class="position-absolute start-0 top-0 w-8px h-100 rounded-2"
-                                         style="background-color: var(@($"--bs-{item.Color}")"></div>
-                                    <div class="text-gray-900 fw-bold text-uppercase fs-2">@item.Name</div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-10">
+                            <div class="card card-flush h-xl-100 card-tour">
+                                <div
+                                    class="card-header rounded bgi-no-repeat bgi-size-cover bgi-position-y-top bgi-position-x-center align-items-start min-h-300px card-img-tour"
+                                    style="background-image:url('@path')" data-default="@path" data-hover="@path1"
+                                    data-bs-theme="light">
+                                    <img class="d-none w-1px h-1px" src="@path1" alt=""/>
                                 </div>
-                                <div class="my-6 fs-3">
-                                    @((MarkupString)$"{item.Description}")
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <div class="fs-2 fw-bold text-gray-800">
-                                        <i class="bi-clock-fill"></i> @(item.TourDuration) Days
+                                <div class="card-body">
+                                    <div class="position-relative ps-6 pe-3 py-2">
+                                        <div class="position-absolute start-0 top-0 w-8px h-100 rounded-2"
+                                            style="background-color: var(@($"--bs-{item.Color}")"></div>
+                                        <div class="text-gray-900 fw-bold text-uppercase fs-2">@item.Name</div>
                                     </div>
-                                    <div class="th-btn  style4" @onclick="() => ShowRoadTour(item)">
-                                        Road Tour
+                                    <div class="my-6 fs-3">
+                                        @((MarkupString)$"{item.Description}")
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="fs-2 fw-bold text-gray-800">
+                                            <i class="bi-clock-fill"></i> @(item.TourDuration) Days
+                                        </div>
+                                        <div class="th-btn  style4" @onclick="() => ShowRoadTour(item)">
+                                            Road Tour
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="th-btn style-radius w-100 bg-success fw-bold fs-2"
-                                     @onclick="(e) => {SetTour(item); }">
-                                    BOOK NOW
+                                <div class="card-footer">
+                                    <div class="th-btn style-radius w-100 bg-success fw-bold fs-2"
+                                        @onclick="(e) => {SetTour(item); }">
+                                        BOOK NOW
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                }
+                    }
+                </div>
             </div>
         </section>
     }

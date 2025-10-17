@@ -1,54 +1,56 @@
 ﻿@inherits LayoutComponentBase
 
-
 <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
     <BookingMenu/>
     <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
         <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
             <div class="d-flex flex-column flex-column-fluid">
-                <div id="kt_app_content" class="app-content ">
+                <div id="kt_app_content">
                     @Body
                 </div>
             </div>
-            <div class="mt-10 bg-light-yellow">
-                <div class="container">
-                    <div class="row py-10 py-lg-20">
-                        <div class="col-lg-4 ps-lg-16">
-                            <h3 class="fw-bold fs-2hx mb-6">FunAsia Go</h3>
-                            <div class="d-flex flex-column">
-                                <a href="/general-view" class="text-black fw-bolder text-hover-primary fs-3 mb-6">General
-                                    View</a>
-                                <a href="/our-price" class="text-black fw-bolder text-hover-primary fs-3 mb-6">Our
-                                    Price</a>
-                                <a href="/routes" class="text-black fw-bolder text-hover-primary fs-3 mb-6">The
-                                    Routes</a>
-                            </div>
+        </div>
+    </div>
+    <!--begin::Footer-->
+    <div class="py-10" style="background-color: #FFFFF7;">
+        <div class="container">
+            <div class="row gy-5">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="d-flex flex-column gap-4">
+                        <div class="fw-bold fs-2">Fun Asia Go</div>
+                        <div class="d-flex flex-column gap-3">
+                            <a href="/general-view" class="fs-3 text-black">General View</a>
+                            <a href="/our-price" class="fs-3 text-black">Our Price</a>
+                            <a href="/routes" class="fs-3 text-black">The Routes</a>
                         </div>
-                        <div class="col-lg-4 ps-lg-16">
-                            <h3 class="fw-bold fs-2hx mb-6">Information</h3>
-                            <div class="d-flex flex-column">
-                                <a href="/about-us" class="text-black fw-bolder text-hover-primary fs-3 mb-6">About
-                                    Us</a>
-                                <a href="/contact-us" class="text-black fw-bolder text-hover-primary fs-3 mb-6">Contact
-                                    Us</a>
-                                <a href="/term-condition"
-                                   class="text-black fw-bolder text-hover-primary fs-3 mb-6">Booking Terms &
-                                    Conditions</a>
-                            </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="d-flex flex-column gap-4">
+                        <div class="fw-bold fs-2">Information</div>
+                        <div class="d-flex flex-column gap-3">
+                            <a href="/about-us" class="fs-3 text-black">About Us</a>
+                            <a href="/contact-us" class="fs-3 text-black">Contact Us</a>
+                            <a href="/term-condition" class="fs-3 text-black">Terms & Conditions</a>
                         </div>
-                        <div class="col-lg-4 ps-lg-16">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="d-flex flex-column gap-4">
+                        <div class="d-flex flex-column gap-3 align-items-start">
                             <img class="h-80px" src="img/funasiago.svg" alt=""/>
-                            <p class="fs-3">
+                            <p class="fs-6 mb-0">
                                 is managed by Fun Asia Travel Pty Ltd, which is incorporated in Sydney, Australia, with
                                 business
                                 registered address at: Level 12, 309 Pitt Street, Sydney NSW 2000 Australia, ACN 685 023
                                 189
                             </p>
-                            <h2 class="fw-bolder">Copyright 2025 © Fun Asia Go.</h2>
                         </div>
+                        <div class="fs-3">Copyright 2025 © Fun Asia Go.</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!--end::Footer-->
 </div>
